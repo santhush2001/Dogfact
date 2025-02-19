@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Fun Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .fact-display {
+            margin: 20px 0;
+            font-size: 1.2em;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .fact-display {
+                font-size: 1em;
+            }
+
+            .btn {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dog Fun Facts</h1>
+        <div id="fact-display" class="fact-display">Click the button to see a fun fact!</div>
+        <button id="show-fact" class="btn">Show Random Fact</button>
+        <button id="share-twitter" class="btn">Share on Twitter</button>
+    </div>
+    <script>
+        const funFacts = [
+            { "fact": "Dogs have a sense of smell that is 40 times better than humans." },
+            { "fact": "The Basenji dog is known as the 'barkless dog' because it doesn't bark like other dogs." },
+            { "fact": "Dogs can understand up to 165 words, signs, and signals." },
+            { "fact": "The world's oldest known breed is the Saluki, which dates back to ancient Egypt." },
+            { "fact": "Dogs have three eyelids, including one that helps keep their eyes moist and protected." },
+            { "fact": "A Greyhound can run up to 45 miles per hour, making it one of the fastest dog breeds." },
+            { "fact": "Dogs' noses are wet to help absorb scent chemicals." },
+            { "fact": "The Labrador Retriever has been the most popular dog breed in the U.S. for several years." },
+            { "fact": "Dogs can hear sounds at frequencies as high as 65,000 Hz, while humans can only hear up to 20,000 Hz." },
+            { "fact": "Dogs have been domesticated for over 15,000 years, making them one of the first domesticated animals." }
+        ];
+
+        document.getElementById('show-fact').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * funFacts.length);
+            const factDisplay = document.getElementById('fact-display');
+            factDisplay.style.opacity = 0;
+            setTimeout(() => {
+                factDisplay.textContent = funFacts[randomIndex].fact;
+                factDisplay.style.opacity = 1;
+            }, 500);
+        });
+
+        document.getElementById('share-twitter').addEventListener('click', () => {
+            const fact = document.getElementById('fact-display').textContent;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact)}`;
+            window.open(twitterUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
